@@ -23,7 +23,8 @@ export default {
 
   formatters: {
     methods: {
-      fromTickToSecond(income) {
+      // Converts x income per tick to y income per second
+      toSecond(income) {
         let multiplier = 1000 / Config.TickInterval
         return Math.floor(income * multiplier)
       }

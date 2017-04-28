@@ -1,13 +1,28 @@
 <template>
   <div>
-    <div v-for="item in shopInventory" :key="item.id" class="item">
-      <p><strong>{{ item.name }}</strong></p>
-      <p>You have: x{{ item.quantity }}</p>
-      <p>Price: ${{ itemPrice(item) }}</p>
-      <p>Individual Income Generation: {{ fromTickToSecond(item.income) }}</p>
-      <p>Generating: {{ fromTickToSecond(incomeFrom(item)) }}</p>
+    <h2>Shop</h2>
 
-      <button @click="buy(item.id)">Buy</button>
+    <div v-for="item in shopInventory" :key="item.id" class="item">
+      <h3>x{{ item.quantity }} {{ item.name }}</h3>
+
+      <hr>
+      <table>
+        <tr>
+          <td>Price:</td>
+          <td>${{ itemPrice(item) }}</td>
+        </tr>
+        <tr>
+          <td>Generates:</td>
+          <td>{{ toSecond(item.income) }}</td>
+        </tr>
+        <tr>
+          <td>Generating:</td>
+          <td>{{ toSecond(incomeFrom(item)) }}</td>
+        </tr>
+      </table>
+      <hr>
+
+      <button @click="buy(item.id)" class="primary">Buy</button>
     </div>
   </div>
 </template>
@@ -61,9 +76,15 @@
 
 <style lang="scss" scoped>
   .item {
-    width: 33%;
-    float: left;
-    padding: 5px;
-    border: 1px solid #ccc;
+    width:         calc(50% - 6rem - 2px);
+    float:         left;
+    padding:       1rem 2rem;
+    border:        1px solid #ccc;
+    border-radius: 5px;
+    margin:        1rem;
+
+    table {
+      width: 100%;
+    }
   }
 </style>

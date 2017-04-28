@@ -1,8 +1,9 @@
 <template>
   <div>
-    <p>You have ${{ currencyInteger }}</p>
-    <p>You are generating ${{ fromTickToSecond(incomePerTick) }} per second</p>
-    <button @click="generateClickIncome">Get Ca$h</button>
+    <h1>Welcome to Click Hook</h1>
+    <p>You have <strong>${{ currencyInteger }}</strong></p>
+    <p>You are generating <strong>${{ toSecond(incomePerTick) }}</strong> per second</p>
+    <button @click="generateClickIncome" class="secondary">Get Ca$h</button>
 
     <inventory></inventory>
   </div>

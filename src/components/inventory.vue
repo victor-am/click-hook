@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="shopInventory.length > 0">
     <h2>Shop</h2>
 
     <div v-for="item in shopInventory" :key="item.id" class="item">
@@ -9,7 +9,7 @@
       <table>
         <tr>
           <td>Price:</td>
-          <td>${{ itemPrice(item) }}</td>
+          <td>${{ currentItemPrice(item) }}</td>
         </tr>
         <tr>
           <td>Generates:</td>
@@ -17,7 +17,7 @@
         </tr>
         <tr>
           <td>Generating:</td>
-          <td>{{ toSecond(incomeFrom(item)) }}</td>
+          <td>{{ toSecond(incomeGenerationFrom(item)) }}</td>
         </tr>
       </table>
       <hr>
@@ -39,10 +39,10 @@
     methods: {
       buy(id) {
         let item  = this.findItem(id)
-        let price = this.itemPrice(item)
+        let price = this.currentItemPrice(item)
 
         if (this.currency >= price) {
-          let params = { id: item.id, price: this.itemPrice(item) }
+          let params = { id: item.id, price: this.currentItemPrice(item) }
           this.$store.commit('buy', params)
         }
       },
@@ -51,14 +51,14 @@
         return this.inventory.find((i) => i.id === id)
       },
 
-      itemPrice(item) {
+      currentItemPrice(item) {
         let base  = item.basePrice
         let owned = item.quantity
 
         return base + ((base / Config.ItemPriceCoeficient) * owned)
       },
 
-      incomeFrom(item) {
+      incomeGenerationFrom(item) {
         return item.income * item.quantity
       }
     },
@@ -66,8 +66,10 @@
     computed: {
       shopInventory() {
         return this.inventory.filter((item) => {
-          let itemBuyRequirement = item.basePrice * Config.BuyItemRequirementMultiplier
-          return itemBuyRequirement <= this.currencyEarned
+          let multiplier             = Config.BuyItemRequirementMultiplier
+          let itemDisplayRequirement = item.basePrice * multiplier
+
+          return itemDisplayRequirement <= this.currencyEarned
         })
       }
     }

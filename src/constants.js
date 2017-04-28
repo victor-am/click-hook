@@ -1,6 +1,6 @@
 export default {
   // This is how long it takes for each tick (game's unit of time)
-  TickInterval: 100,
+  TickInterval: 80,
 
   // This is how much a player earns by default on each tick
   BaseIncome: 10,

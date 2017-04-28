@@ -37,7 +37,7 @@
       },
 
       generateClickIncome() {
-        this.currency += Config.ClickIncome
+        this.$store.commit('income', Config.ClickIncome)
       },
 
       itemsWithType(type) {

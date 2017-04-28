@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>You have ${{ currency }}</p>
+    <p>You have ${{ currencyInteger }}</p>
     <p>You are generating ${{ incomePerSecond }} per second</p>
     <button @click="generateClickIncome">Get Ca$h</button>
 
@@ -9,7 +9,8 @@
         <p><strong>{{ item.name  }}</strong></p>
         <p>You have: x{{ item.quantity }}</p>
         <p>Price: ${{ itemPrice(item) }}</p>
-        <p>Income Generation: {{ fromTickToSecond(item.income) }}</p>
+        <p>Individual Income Generation: {{ fromTickToSecond(item.income) }}</p>
+        <p>Generating: {{ fromTickToSecond(incomeFrom(item)) }}</p>
 
         <button @click="buy(item.id)">Buy</button>
       </div>
@@ -18,26 +19,15 @@
 </template>
 
 <script>
-  // This is how long it takes for each tick (game's unit of time)
-  const TickInterval = 500
+  import {
+    TickInterval,
+    BaseIncome,
+    ClickIncome,
+    ItemPriceCoeficient,
+    BaseItems
+  } from '@/constants'
 
-  // This is how much a player earns by default on each tick
-  const BaseIncome = 1
-
-  // This is how much a player earns by one click
-  const ClickIncome = 1
-
-  // This is how much the price of an item goes up based on the number
-  // of the same item owned by the player
-  //
-  // The bigger the number, the less the owned assets of the player
-  // impact on their next buys prices
-  const ItemPriceCoeficient = 4
-
-  // Those are all the items in the game
-  const Items = [
-    { id: 1, name: 'Income Generator I', type: 'IncomeGenerator', basePrice: 100, income: 2 }
-  ]
+  const Items = BaseItems.map((i) => Object.assign(i, { quantity: 0 }))
 
   export default {
     name: 'Game',
@@ -45,7 +35,7 @@
     data () {
       return {
         currency:  0,
-        inventory: Items.map((i) => Object.assign(i, { quantity: 0 }))
+        inventory: Items
       }
     },
 
@@ -87,7 +77,7 @@
 
       fromTickToSecond(income) {
         let multiplier = 1000 / TickInterval
-        return income * multiplier
+        return Math.floor(income * multiplier)
       },
 
       itemPrice(item) {
@@ -95,6 +85,10 @@
         let owned = item.quantity
 
         return base + ((base / ItemPriceCoeficient) * owned)
+      },
+
+      incomeFrom(item) {
+        return item.income * item.quantity
       }
     },
 
@@ -114,6 +108,10 @@
 
       incomePerSecond() {
         return this.fromTickToSecond(this.incomePerTick)
+      },
+
+      currencyInteger() {
+        return Math.floor(this.currency)
       }
     }
   }

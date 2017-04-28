@@ -1,11 +1,14 @@
 <template>
   <div class="">
     <p>You have ${{ currency }}</p>
+    <button @click="generateClickIncome">Get Ca$h</button>
   </div>
 </template>
 
 <script>
-  const IncomeGenerationInterval = 1000
+  const IncomeInterval = 1000
+  const BaseIncome     = 1
+  const ClickIncome    = 1
 
   export default {
     name: 'Game',
@@ -17,23 +20,27 @@
     },
 
     mounted() {
-      this.scheduleIncomeGeneration()
+      this.scheduleIncome()
     },
 
     methods: {
-      scheduleIncomeGeneration() {
-        window.setTimeout(this.incomeGenerate, IncomeGenerationInterval)
+      scheduleIncome() {
+        window.setTimeout(this.generateIncome, IncomeInterval)
       },
 
-      incomeGenerate() {
-        this.currency += this.income
-        this.scheduleIncomeGeneration()
+      generateIncome() {
+        this.currency += this.perTickIncome
+        this.scheduleIncome()
+      },
+
+      generateClickIncome() {
+        this.currency += ClickIncome
       }
     },
 
     computed: {
-      income() {
-        let base = 1
+      perTickIncome() {
+        let base = BaseIncome
         return base
       }
     }

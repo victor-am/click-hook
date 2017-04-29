@@ -1,6 +1,5 @@
 <template>
   <div class="padded container shop-container" v-if="shopInventory.length > 0">
-    <div class="fancy clear"></div>
     <h1 class="clear text">
       <i class="fa fa-shopping-bag"></i>
       Shop

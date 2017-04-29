@@ -24,8 +24,8 @@ export default {
   // Those are all the items in the game
   BaseItems: [
     { id: 1, name: 'Income Generator I',   type: 'IncomeGenerator', basePrice: 10,    income: 0.1 },
-    { id: 2, name: 'Income Generator II',  type: 'IncomeGenerator', basePrice: 200,   income: 1 },
-    { id: 3, name: 'Income Generator III', type: 'IncomeGenerator', basePrice: 800,   income: 4 },
+    { id: 2, name: 'Income Generator II',  type: 'IncomeGenerator', basePrice: 100,   income: 1 },
+    { id: 3, name: 'Income Generator III', type: 'IncomeGenerator', basePrice: 400,   income: 3 },
     { id: 4, name: 'Income Generator VI',  type: 'IncomeGenerator', basePrice: 1600,  income: 8 },
     { id: 5, name: 'Income Generator V',   type: 'IncomeGenerator', basePrice: 4000,  income: 20 },
     { id: 6, name: 'Income Generator VI',  type: 'IncomeGenerator', basePrice: 10000, income: 50 },

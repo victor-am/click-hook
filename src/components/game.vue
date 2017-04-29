@@ -9,14 +9,21 @@
       </h1>
 
       <p>You have <strong>${{ currencyInteger }}</strong></p>
-      <p>You are generating <strong>${{ toSecond(incomePerTick) }}</strong> per second</p>
+    <transition name="fade">
+      <p v-if="incomePerTick > 0">You are passively generating <strong>${{ toSecond(incomePerTick) }}</strong> per second</p>
+    </transition>
+
       <button @click="generateClickIncome" class="secondary big">
         <i class="fa fa-money"></i>
         Get more Ca$h
       </button>
+
+      <incentive-message></incentive-message>
     </div>
 
-    <shop></shop>
+    <transition name="fade">
+      <shop></shop>
+    </transition>
   </div>
 </template>
 
@@ -24,13 +31,14 @@
   import Config from '@/constants'
   import Mix    from '@/mixins'
 
-  import Shop      from '@/components/shop'
-  import GithubBox from '@/components/github-box'
+  import Shop             from '@/components/shop'
+  import GithubBox        from '@/components/github-box'
+  import IncentiveMessage from '@/components/incentive-message'
 
   export default {
     name: 'Game',
 
-    components: { Shop, GithubBox },
+    components: { Shop, GithubBox, IncentiveMessage },
 
     mixins: [Mix.getters, Mix.formatters],
 
@@ -87,13 +95,11 @@
     text-align: center;
   }
 
-  .github-box {
-    position: absolute;
-    top:      7px;
-    right:    10px;
-    i {
-      color:     #111;
-      font-size: 3rem;
-    }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+  }
+
+  .fade-enter, .fade-leave {
+    opacity: 0;
   }
 </style>

@@ -1,7 +1,10 @@
 <template>
   <div class="padded container shop-container" v-if="shopInventory.length > 0">
-    <h1 class="fancy clear"></h1>
-    <h1 class="clear text">Shop</h1>
+    <div class="fancy clear"></div>
+    <h1 class="clear text">
+      <i class="fa fa-shopping-bag"></i>
+      Shop
+    </h1>
 
     <div class="shop">
       <div v-for="item in shopInventory" :key="item.id" class="item">
@@ -24,7 +27,10 @@
         </table>
         <hr>
 
-        <button @click="buy(item.id)" class="primary">Buy</button>
+        <button @click="buy(item.id)" class="primary">
+          <i class="fa fa-cart-plus"></i>
+          Buy
+        </button>
       </div>
     </div>
   </div>

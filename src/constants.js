@@ -6,7 +6,7 @@ export default {
   BaseIncome: 10,
 
   // This is how much a player earns by one click
-  ClickIncome: 1,
+  ClickIncome: 5,
 
   // This is how much the price of an item goes up based on the number
   // of the same item owned by the player

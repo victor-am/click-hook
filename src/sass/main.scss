@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
 $color-primary:   #0090f1;
-$color-secondary: #b4db66;
+$color-secondary: #29bb23;
 
 $color-clear: #fff;
 $color-dark:  #111;
@@ -10,7 +10,7 @@ $color-dark:  #111;
 //
 // Base
 //
-* {
+p, button, input {
   font-family: 'Roboto', sans-serif;
 }
 
@@ -49,11 +49,27 @@ button {
 button.primary {
   @extend .text.clear;
   background: $color-primary;
+
+  &:hover {
+    background: darken($color-primary, 10%)
+  }
+
+  &:active {
+    background: lighten($color-primary, 10%)
+  }
 }
 
 button.secondary {
-  @extend .text.dark;
+  @extend .text.clear;
   background: $color-secondary;
+
+  &:hover {
+    background: darken($color-secondary, 10%)
+  }
+
+  &:active {
+    background: lighten($color-secondary, 10%)
+  }
 }
 
 button.big {
@@ -64,10 +80,7 @@ button.big {
 //
 // Fancy Headers
 //
-h1.fancy,
-h2.fancy,
-h3.fancy,
-h4.fancy {
+div.fancy {
   margin-left: -1rem;
   margin-top:  -1rem;
   padding:     2rem 2rem 3rem;
@@ -97,10 +110,7 @@ h4.fancy {
   color: $color-dark;
 }
 
-h1.fancy.dark,
-h2.fancy.dark,
-h3.fancy.dark,
-h4.fancy.dark {
+div.fancy.dark {
   @extend .text.clear;
 
   &:before {
@@ -108,10 +118,7 @@ h4.fancy.dark {
   }
 }
 
-h1.fancy.clear,
-h2.fancy.clear,
-h3.fancy.clear,
-h4.fancy.clear {
+div.fancy.clear {
   @extend .text.dark;
 
   &:before {
@@ -119,10 +126,7 @@ h4.fancy.clear {
   }
 }
 
-h1.fancy.primary,
-h2.fancy.primary,
-h3.fancy.primary,
-h4.fancy.primary {
+div.fancy.primary {
   @extend .text.clear;
 
   &:before {

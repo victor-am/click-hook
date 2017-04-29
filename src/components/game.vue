@@ -1,10 +1,19 @@
 <template>
   <div>
-    <div class="padded container">
-      <h1 class="fancy primary">Welcome to Click Hook</h1>
+    <github-box></github-box>
+
+    <div class="padded container income-container">
+      <h1>
+        <i class="fa fa-mouse-pointer"></i>
+        Welcome to Click Hook
+      </h1>
+
       <p>You have <strong>${{ currencyInteger }}</strong></p>
       <p>You are generating <strong>${{ toSecond(incomePerTick) }}</strong> per second</p>
-      <button @click="generateClickIncome" class="secondary big">Get Ca$h</button>
+      <button @click="generateClickIncome" class="secondary big">
+        <i class="fa fa-money"></i>
+        Get more Ca$h
+      </button>
     </div>
 
     <shop></shop>
@@ -13,14 +22,15 @@
 
 <script>
   import Config from '@/constants'
-  import Mix from '@/mixins'
+  import Mix    from '@/mixins'
 
-  import Shop from '@/components/shop'
+  import Shop      from '@/components/shop'
+  import GithubBox from '@/components/github-box'
 
   export default {
     name: 'Game',
 
-    components: { Shop },
+    components: { Shop, GithubBox },
 
     mixins: [Mix.getters, Mix.formatters],
 
@@ -69,4 +79,21 @@
 </script>
 
 <style lang="scss" scoped>
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  .income-container {
+    text-align: center;
+  }
+
+  .github-box {
+    position: absolute;
+    top:      7px;
+    right:    10px;
+    i {
+      color:     #111;
+      font-size: 3rem;
+    }
+  }
 </style>

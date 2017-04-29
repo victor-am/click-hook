@@ -19,11 +19,15 @@ export default {
   // unlock each item in the store.
   //
   // The bigger the number, the longer the items take to show up in the shop
-  BuyItemRequirementMultiplier: 5,
+  BuyItemRequirementMultiplier: 1,
 
   // Those are all the items in the game
   BaseItems: [
     { id: 1, name: 'Income Generator I',  type: 'IncomeGenerator', basePrice: 100, income: 2 },
+    { id: 2, name: 'Income Generator II', type: 'IncomeGenerator', basePrice: 400, income: 9 },
+    { id: 2, name: 'Income Generator II', type: 'IncomeGenerator', basePrice: 400, income: 9 },
+    { id: 2, name: 'Income Generator II', type: 'IncomeGenerator', basePrice: 400, income: 9 },
+    { id: 2, name: 'Income Generator II', type: 'IncomeGenerator', basePrice: 400, income: 9 },
     { id: 2, name: 'Income Generator II', type: 'IncomeGenerator', basePrice: 400, income: 9 },
   ]
 }

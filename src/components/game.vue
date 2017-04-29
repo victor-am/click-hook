@@ -1,11 +1,13 @@
 <template>
   <div>
-    <h1>Welcome to Click Hook</h1>
-    <p>You have <strong>${{ currencyInteger }}</strong></p>
-    <p>You are generating <strong>${{ toSecond(incomePerTick) }}</strong> per second</p>
-    <button @click="generateClickIncome" class="secondary">Get Ca$h</button>
+    <div class="padded container">
+      <h1 class="fancy primary">Welcome to Click Hook</h1>
+      <p>You have <strong>${{ currencyInteger }}</strong></p>
+      <p>You are generating <strong>${{ toSecond(incomePerTick) }}</strong> per second</p>
+      <button @click="generateClickIncome" class="secondary big">Get Ca$h</button>
+    </div>
 
-    <inventory></inventory>
+    <shop></shop>
   </div>
 </template>
 
@@ -13,12 +15,12 @@
   import Config from '@/constants'
   import Mix from '@/mixins'
 
-  import Inventory from '@/components/inventory'
+  import Shop from '@/components/shop'
 
   export default {
     name: 'Game',
 
-    components: { Inventory },
+    components: { Shop },
 
     mixins: [Mix.getters, Mix.formatters],
 

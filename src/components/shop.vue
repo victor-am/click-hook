@@ -1,38 +1,41 @@
 <template>
-  <div v-if="shopInventory.length > 0">
-    <h2>Shop</h2>
+  <div class="padded container shop-container" v-if="shopInventory.length > 0">
+    <h1 class="fancy clear"></h1>
+    <h1 class="clear text">Shop</h1>
 
-    <div v-for="item in shopInventory" :key="item.id" class="item">
-      <h3>x{{ item.quantity }} {{ item.name }}</h3>
+    <div class="shop">
+      <div v-for="item in shopInventory" :key="item.id" class="item">
+        <h3>x{{ item.quantity }} {{ item.name }}</h3>
 
-      <hr>
-      <table>
-        <tr>
-          <td>Price:</td>
-          <td>${{ currentItemPrice(item) }}</td>
-        </tr>
-        <tr>
-          <td>Generates:</td>
-          <td>{{ toSecond(item.income) }}</td>
-        </tr>
-        <tr>
-          <td>Generating:</td>
-          <td>{{ toSecond(incomeGenerationFrom(item)) }}</td>
-        </tr>
-      </table>
-      <hr>
+        <hr>
+        <table>
+          <tr>
+            <td>Price:</td>
+            <td>${{ currentItemPrice(item) }}</td>
+          </tr>
+          <tr>
+            <td>Generates:</td>
+            <td>{{ toSecond(item.income) }}</td>
+          </tr>
+          <tr>
+            <td>Generating:</td>
+            <td>{{ toSecond(incomeGenerationFrom(item)) }}</td>
+          </tr>
+        </table>
+        <hr>
 
-      <button @click="buy(item.id)" class="primary">Buy</button>
+        <button @click="buy(item.id)" class="primary">Buy</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   import Config from '@/constants'
-  import Mix from '@/mixins'
+  import Mix    from '@/mixins'
 
   export default {
-    name: 'Inventory',
+    name: 'Shop',
 
     mixins: [Mix.getters, Mix.formatters],
 
@@ -77,16 +80,37 @@
 </script>
 
 <style lang="scss" scoped>
-  .item {
-    width:         calc(50% - 6rem - 2px);
-    float:         left;
+  @import '../sass/main.scss';
+
+  h1 {
+    margin-left: 1rem;
+  }
+
+  .shop-container {
+    background: $color-primary;
+  }
+
+  .shop {
+    display:        flex;
+    flex-wrap:      wrap;
+    flex-direction: row;
+    position:       relative;
+  }
+
+  .shop .item {
     padding:       1rem 2rem;
     border:        1px solid #ccc;
     border-radius: 5px;
+    background:    #fff;
     margin:        1rem;
+    flex:          1 1 25%;
 
     table {
       width: 100%;
+
+      tr {
+        flex: 1 1 auto;
+      }
     }
   }
 </style>
